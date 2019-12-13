@@ -3,7 +3,6 @@ package io.zipcoder.persistenceapp.services;
 import io.zipcoder.persistenceapp.models.Employee;
 import io.zipcoder.persistenceapp.repositories.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,14 +12,8 @@ public class EmployeeServices {
 
     //fields
 
-    private EmployeeRepo employeeRepo;
-
-    //constructor
-
     @Autowired
-    public EmployeeServices(EmployeeRepo employeeRepo) {
-        this.employeeRepo = employeeRepo;
-    }
+    private EmployeeRepo employeeRepo;
 
     // methods
 
@@ -118,21 +111,19 @@ public class EmployeeServices {
         }
     }
 
-    public void deleteDirectAndIndirectReports(Long manId){
-        for(Employee e : findDirectAndIndirectEmployees(manId)){
+    public void deleteDirectAndIndirectReports(Long manId) {
+        for(Employee e : findDirectAndIndirectEmployees(manId)) {
             deleteEmployee(e.getEmployeeNumber());
         }
     }
 
-    public void deleteDirectReports(Long manId){
-        for(Employee e : findEmployeesByManager(manId)){
+    public void deleteDirectReports(Long manId) {
+        for(Employee e : findEmployeesByManager(manId)) {
             deleteEmployee(e.getEmployeeNumber());
         }
     }
 
-    public void mergeDepartments(Long depIdA, Long depIdB){
 
-    }
 
 
 

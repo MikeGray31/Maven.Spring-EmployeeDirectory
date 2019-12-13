@@ -1,29 +1,33 @@
 package io.zipcoder.persistenceapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long EmployeeNumber;
+    private Long employeeNumber;
     private String firstName;
     private String lastName;
     private String title;
     private String phoneNumber;
     private String email;
     private Date hireDate;
+    @ManyToOne(fetch = FetchType.LAZY)
     private Employee manager;
     private Long departmentKey;
 
     public Long getEmployeeNumber() {
-        return EmployeeNumber;
+        return employeeNumber;
     }
 
     public void setEmployeeNumber(Long employeeNumber) {
-        EmployeeNumber = employeeNumber;
+        employeeNumber = employeeNumber;
     }
 
     public String getFirstName() {
